@@ -2,9 +2,10 @@ const HDWalletProvider = require('truffle-hdwallet-provider');
 const Web3 = require('web3');
 const { interface, bytecode } = require('./compile');
 
+require('dotenv').config();
 const provider = new HDWalletProvider(
-  'call glow acoustic vintage front ring trade assist shuffle mimic volume reject',
-  'https://rinkeby.infura.io/orDImgKRzwNrVCDrAk5Q'
+  process.env.MNEMONIC_SECRET,
+  process.env.API_ENDPOINT
 );
 const web3 = new Web3(provider);
 

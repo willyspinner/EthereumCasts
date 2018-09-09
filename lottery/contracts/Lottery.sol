@@ -1,6 +1,7 @@
 pragma solidity ^0.4.17;
 
 contract Lottery {
+    // recall that address is 
     address public manager;
     address[] public players;
 

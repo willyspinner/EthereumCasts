@@ -1,7 +1,13 @@
 const assert = require('assert');
 const ganache = require('ganache-cli');
 const Web3 = require('web3');
+// Web3 lets us connect to a network. Here we are connecting it to the ganache network.
+// we connect it to a provider. A provider is a communication layer between web3 and 
+// the actual ethereum network.
+
 const web3 = new Web3(ganache.provider());
+// ganache gives you default accounts, unlike HDWalletProvider, where you must put your
+// secret mneumonics.
 const { interface, bytecode } = require('../compile');
 
 let accounts;
@@ -16,7 +22,7 @@ beforeEach(async () => {
   inbox = await new web3.eth.Contract(JSON.parse(interface))
     .deploy({
       data: bytecode,
-      arguments: ['Hi there!']
+      arguments: ['Hi there!'] // this is passed to the Contract's constructor arguments.
     })
     .send({ from: accounts[0], gas: '1000000' });
 });
